@@ -13,7 +13,7 @@ type Client struct {
 	HTTPClient *resty.Client
 }
 
-const HostUrl string = "http://localhost:7070"
+const HostUrl string = "https://houstn.io"
 
 func NewClient(host, organisation, token *string) (*Client, error) {
 	c := Client{
