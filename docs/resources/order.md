@@ -1,57 +1,37 @@
 ---
-page_title: "order Resource - terraform-provider-hashicups"
+page_title: "order Resource - terraform-provider-houstn"
 subcategory: ""
 description: |-
-  The order resource allows you to configure a HashiCups order.
+The application resource allows you to configure a Houstn application.
 ---
 
-# Resource `hashicups_order`
+# Resource `houstn_application`
 
--> Visit the [Perform CRUD operations with Providers](https://learn.hashicorp.com/tutorials/terraform/provider-use?in=terraform/providers&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) Learn tutorial for an interactive getting started experience.
-
-The order resource allows you to configure a HashiCups order.
+The application resource allows you to configure a Houstn application.
 
 ## Example Usage
 
 ```terraform
-resource "hashicups_order" "edu" {
-  items {
-    coffee {
-      id = 3
-    }
-    quantity = 2
-  }
-  items {
-    coffee {
-      id = 2
-    }
-    quantity = 2
-  }
+resource "houstn_application" "my-application" {
+  application_id = "my-application"
+  name           = "My Application"
+  active         = true
 }
 ```
 
 ## Argument Reference
 
-- `items` - (Required) Items in a HashiCups order. See [Order item](#order-item) below for details.
-
-### Order item
-
-Each order item contains a `coffee` object and a `quantity`.
-
-- `coffee` - (Required) Represents a HashiCups coffee object. See [Coffee](#coffee) below for details.
-- `quantity` - (Required) The number of coffee in an order item.
-
-### Coffee
-
-- `id` - (Required) The HashiCups coffee ID.
+- `application_id` - (Required) A unique ID used for you application
+- `name` - (Optional) A name for your application
+- `active` - (Required) Whether your application is active
 
 ## Attributes Reference
 
 In addition to all the arguments above, the following attributes are exported.
 
-### Coffee
+### Application
 
-- `image` - The coffee's image URL path.
-- `name` - The coffee name.
-- `price` - The coffee price.
-- `teaser` - The coffee teaser.
+- `id` - The application id
+- `application_id` - The specified application id
+- `name` - The application name.
+- `active` - The application active status.
