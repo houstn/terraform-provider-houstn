@@ -20,14 +20,34 @@ func NewClient(host, organisation, token *string) (*Client, error) {
 		HTTPClient:   resty.New(),
 		BaseURL:      fmt.Sprintf("%s/api", HostUrl),
 		Organisation: *organisation,
-		Token:        *token,
 	}
 
 	if host != nil {
 		c.BaseURL = fmt.Sprintf("%s/api", *host)
 	}
 
+	jwt, err := c.Login(*organisation, *token)
+
+	if err != nil {
+		return nil, err
+	}
+
+	c.Token = jwt
+	c.SetToken(c.Token)
+
 	return &c, nil
+}
+
+func (c *Client) SetBasicAuth(user, password string) *Client {
+	c.HTTPClient.SetBasicAuth(user, password)
+
+	return c
+}
+
+func (c *Client) SetToken(token string) *Client {
+	c.HTTPClient.SetAuthScheme("Bearer").SetAuthToken(token)
+
+	return c
 }
 
 func (c *Client) Get(path string, res interface{}) error {

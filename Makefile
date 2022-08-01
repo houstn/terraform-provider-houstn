@@ -3,7 +3,7 @@ HOSTNAME=houstn.io
 NAMESPACE=terraform
 NAME=houstn
 BINARY=terraform-provider-${NAME}
-VERSION=0.0.1
+VERSION=0.0.4
 OS_ARCH=darwin_amd64
 
 default: install

@@ -2,6 +2,7 @@ package houstn
 
 import (
 	"context"
+	"fmt"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/houstn/terraform-provider-houstn/houstn/client"
@@ -29,7 +30,7 @@ func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}
 		diags = append(diags, diag.Diagnostic{
 			Severity: diag.Error,
 			Summary:  "Unable to create houstn client",
-			Detail:   "Unable to authenticate user for authenticated houstn client",
+			Detail:   fmt.Sprintf("Unable to authenticate user for authenticated houstn client: %s", err),
 		})
 
 		return nil, diags
